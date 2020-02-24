@@ -13,20 +13,19 @@ trigger:
     - master
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng build --prod --output-path="$(Build.ArtifactStagingDirectory)"
-  displayName: 'npm install and build'
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish build artifacts
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+  - template: BuildTemplates/BuildAngularApp.yaml@utilities
+    parameters: 
+      projectName: CodeTech.Web
+      configuration: production
+      outputPath: $(Build.ArtifactStagingDirectory)
+  - template: BuildTemplates/BuildAngularDockerImage@utilities
+    parameters:
+      dockerFile: '**/Dockerfile'
+      content: $(Build.ArtifactStagingDirectory)
+      outputPath: $(Build.ArtifactStagingDirectory)/docker
+  - task: PublishBuildArtifacts@1
+    displayName: Publish build artifacts
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
