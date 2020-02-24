@@ -27,5 +27,5 @@ steps:
     inputs:
       containerRegistry: 'DockerContainerRegistry'
       repository: 'CodeTech.Web'
-      command: 'build'
+      command: 'buildAndPush'
       Dockerfile: '**/Dockerfile'
