@@ -1,0 +1,31 @@
+resources:
+ repositories:
+   - repository: utilities
+     type: git
+     name: Utilities
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+trigger:
+  branches:
+    include:
+    - master
+
+steps:
+  - template: BuildTemplates/BuildAngularApp.yaml@utilities
+    parameters: 
+      projectName: CodeTech.Web
+      configuration: production
+      outputPath: $(Build.ArtifactStagingDirectory)
+#  - template: BuildTemplates/BuildAngularDockerImage@utilities
+#    parameters:
+#      dockerFile: '**/Dockerfile'
+#      content: $(Build.ArtifactStagingDirectory)
+#      outputPath: $(Build.ArtifactStagingDirectory)/docker
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'DockerContainerRegistry'
+      repository: 'CodeTech.Web'
+      command: 'build'
+      Dockerfile: '**/Dockerfile'
