@@ -23,10 +23,9 @@ steps:
       dockerFile: '**/Dockerfile'
       content: $(Build.ArtifactStagingDirectory)
       outputPath: $(Build.ArtifactStagingDirectory)/docker
-      
-  - task: PublishBuildArtifacts@1
-    displayName: Publish build artifacts
+  - task: Docker@2
     inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'drop'
-      publishLocation: 'Container'
+      containerRegistry: 'DockerContainerRegistry'
+      repository: 'CodeTech.Web'
+      command: 'build'
+      Dockerfile: '**/Dockerfile'
