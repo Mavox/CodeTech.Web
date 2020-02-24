@@ -23,6 +23,7 @@ steps:
       dockerFile: '**/Dockerfile'
       content: $(Build.ArtifactStagingDirectory)
       outputPath: $(Build.ArtifactStagingDirectory)/docker
+      
   - task: PublishBuildArtifacts@1
     displayName: Publish build artifacts
     inputs:
