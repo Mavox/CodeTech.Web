@@ -19,7 +19,7 @@ steps:
   - checkout: Utilities
   - template: BuildTemplates/BuildAngularApp.yaml@utilities
     parameters: 
-      projectName: CodeTech.Web
+      projectName: CurrentRepo/CodeTech.Web
       configuration: production
       outputPath: $(Build.ArtifactStagingDirectory)
   - task: Docker@2
