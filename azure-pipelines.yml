@@ -17,6 +17,7 @@ steps:
   - checkout: self
 # Utilities // Måste checkas ut eftersom vi vill ha en kuberneteskonfiguration i vår artefakt härifrån
   - checkout: Utilities
+  - script: dir
   - template: BuildTemplates/BuildAngularApp.yaml@utilities
     parameters: 
       projectName: CodeTech.Web
@@ -30,7 +31,6 @@ steps:
       repository: 'CodeTech.Web'
       command: 'buildAndPush'
       Dockerfile: 'CurrentRepo/**/Dockerfile'
-  - script: dir
   - task: CopyFiles@2
     displayName: Copy Kubernetes configuration file to artifact folder
     inputs:
