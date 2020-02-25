@@ -30,6 +30,7 @@ steps:
       repository: 'CodeTech.Web'
       command: 'buildAndPush'
       Dockerfile: 'CurrentRepo/**/Dockerfile'
+  - script: dir
   - task: CopyFiles@2
     displayName: Copy Kubernetes configuration file to artifact folder
     inputs:
