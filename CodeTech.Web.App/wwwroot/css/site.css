@@ -1,0 +1,86 @@
+﻿html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+    .link path {
+        fill: black;
+    }
+
+    .link * {
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    .link:hover, .link:active {
+        background-color: black;
+        color: white;
+    }
+
+        .link:hover path, .link:active path {
+            fill: white;
+        }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffaf21;
+    padding: 20px;
+}
+
+    .form > * {
+        display: block;
+    }
+
+    .form > input[type=text] {
+        flex-grow: 1;
+    }
+
+    .form input[type=text] {
+        background-color: black;
+        border-width: 0px;
+        color: white;
+        padding: 5px;
+    }
+
+    .form label {
+        font-weight: bold;
+    }
+
+    .form > input[type=text]:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .form > label:not(:last-child) {
+        margin-bottom: 5px;
+    }
+
+    .form > input[type=button], .form > button {
+        align-self: flex-start;
+    }
+
+    .form input[type=button], .form button {
+        background-color: transparent;
+        border-style: solid;
+        border-color: #C07B00;
+        border-width: 0px 2px 2px 0px;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+        .form input[type=button] > *::before, .form button > * ::before {
+            content: ">>";
+        }
+
+        .form input[type=button]:active, .form button:active {
+            border-width: 2px 0px 0px 2px;
+        }

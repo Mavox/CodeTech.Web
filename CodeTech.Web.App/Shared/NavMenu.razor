@@ -1,0 +1,42 @@
+﻿@using Models
+@inject IEnumerable<MenuLink> MenuItems
+
+    <div class="nav-menu">
+        @foreach (var menuItem in MenuItems) 
+        {
+            <NavLink class="nav-menu-item" href="@menuItem.Path" Match="NavLinkMatch.All">
+                @menuItem.Name
+            </NavLink>
+        }
+    </div>
+<style>
+    .nav-menu{
+        display:flex;
+        flex-direction: column;
+        justify-content:left;
+        padding-top:10px;
+    }
+
+    .nav-menu-item, -nav-menu-item:hover{
+        background-color: #ffaf21;
+        padding:10px;
+        margin: 10px 0px;
+        border: 0px solid #C07B00;
+        border-right-width: 10px;
+        margin-left: -11px;
+        width:200px;
+        color: black;
+        font-weight:bold;
+        text-decoration: none;
+    }
+
+    .nav-menu-item.active{
+        border-right-width:0px;
+        border-left-width:10px;
+        margin-left: -21px;
+        background-color: #ffa200;
+    }
+</style>
+
+@code {
+}
